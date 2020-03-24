@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: ui
-  name: ui
+    app: vote-ui
+  name: vote-ui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ui
+      app: vote-ui
   template:
     metadata:
       labels:
-        app: ui
+        app: vote-ui
     spec:
       containers:
         - image: quay.io/openshift-pipeline/vote-ui:latest
@@ -25,6 +25,6 @@ spec:
               protocol: TCP
           env:
             - name: VOTING_API_SERVICE_HOST
-              value: "api"
+              value: "vote-api"
             - name: VOTING_API_SERVICE_PORT
               value: "9000"
